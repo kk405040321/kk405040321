@@ -21,6 +21,21 @@ public class MySort {
     }
 
     /**
+     * 冒泡排序
+     * @param array 需要排序的数组
+     */
+    public static void bubbleSort(int[] array){
+        int length = array.length;
+        for (int i=0;i<length-1;i++){
+            for (int j=0;j<length-i-1;j++){
+                if (array[j]>array[j+1]){
+                    MyUtils.exch(array,j,j+1);
+                }
+            }
+        }
+    }
+
+    /**
      *选择排序
      * @param array 要排序的数组
      */
@@ -174,7 +189,7 @@ public class MySort {
     }
 
     /**
-     * 三向快速排序
+     * 三向切分快速排序
      * @param array 需要排序的数组
      * @param lo 低位
      * @param hi 高位
@@ -209,5 +224,52 @@ public class MySort {
         }
         T_quickSort(array,lo,lt-1);
         T_quickSort(array,gt+1,hi);
+    }
+
+    /**
+     * 上浮算法
+     * @param array 执行上浮的数组
+     * @param i 需要上浮元素
+     */
+    public static void floatUp(int[] array,int i){
+        while (i>0){
+            if (array[i]>array[i/2]){
+                MyUtils.exch(array,i,i/2);
+            }
+            i /=2;
+        }
+    }
+
+    /**
+     * 下沉算法
+     * @param array 执行下沉算法的数组
+     * @param i 需要下沉的元素
+     * @param length 数组的长度
+     */
+    public static void sink(int[] array,int i,int length){
+        while (i*2<length){
+            int k = i*2;
+            if (array[k]<array[k+1]) k++;
+            if (array[i]>=array[k]) break;
+            MyUtils.exch(array,i,k);
+            i=k;
+        }
+    }
+
+    /**
+     * 下沉堆排序
+     * @param array 需要排序的数组
+     * @param length 数组的长度
+     */
+    public static void sinkSort(int[] array,int length){
+        //堆下沉使其有序化
+        for (int i = length/2-1;i>=0;i--){
+             sink(array,i,length);
+        }
+        //排序
+        for (int j=length-1;j>0;){
+            MyUtils.exch(array,0,j--);
+            sink(array,0,j);
+        }
     }
 }

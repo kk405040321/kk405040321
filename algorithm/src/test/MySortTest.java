@@ -21,6 +21,12 @@ public class MySortTest {
     }
 
     @Test
+    public void bubbleSortTest(){
+        MySort.bubbleSort(array);
+        System.out.println(Arrays.toString(array));
+    }
+
+    @Test
     public void selectSortTest() {
         MySort.selectSort(array);
     }
@@ -74,4 +80,29 @@ public class MySortTest {
         MySort.T_quickSort(array,lo,hi);
         System.out.println(Arrays.toString(array));
     }
+
+    @Test
+    public void floatUpTest(){
+        int length = array.length;
+        for (int i=1;i<length-1;i++){
+            MySort.floatUp(array,i);
+        }
+        System.out.println(Arrays.toString(array));
+    }
+
+    @Test
+    public void sinkTest(){
+        for (int i=array.length/2-1;i>=0;i--){
+            MySort.sink(array,i,array.length);
+        }
+        System.out.println(Arrays.toString(array));
+    }
+
+    @Test
+    public void sinkSortTest(){
+        MySort.sinkSort(array,array.length);
+        System.out.println(Arrays.toString(array));
+    }
+
+
 }
